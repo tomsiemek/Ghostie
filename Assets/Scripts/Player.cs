@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
 
-
+    [SerializeField] private float BarrowAccelerationMultiplier = 1.5f;
     public Rigidbody2D Rb;
     //public float airFriction = 2.0f;
     public float acceleration = 7.8f;
@@ -19,14 +19,14 @@ public class Player : MonoBehaviour
     float shrinkageScalePerSecond = 0.8f;
     float timeElapsedForMovementToPortal = 0;
 
+    private float baseAcc;
+
 
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
         camera = Camera.main;
-        GameObject portal = GameObject.Find("Portal");
-        portalPosition = portal.transform.position;
-        Debug.Log(portalPosition);
+        baseAcc = acceleration;
     }
 
     public void Respawn()
@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
         var childSprite = transform.GetChild(0).gameObject;
         childSprite.GetComponent<Rotate>().enabled = true;
         FindObjectOfType<LevelManager>().EndTheGame();
+        GameObject portal = GameObject.Find("Portal");
+        portalPosition = portal.transform.position;
     }
 
 
@@ -55,6 +57,22 @@ public class Player : MonoBehaviour
         if (collider.CompareTag("Enemy"))
         {
             Respawn();
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.collider.CompareTag("Barrow"))
+        {
+            acceleration = baseAcc * BarrowAccelerationMultiplier;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.collider.CompareTag("Barrow"))
+        {
+            acceleration = baseAcc;
         }
     }
 
