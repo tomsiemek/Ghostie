@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 using Assets.Scripts;
 public class LevelManager : MonoBehaviour
 {
+    public static bool ShowedLevelTitle = false;
+    [SerializeField]private string LevelTitle;
     float timeElapsed = 0;
     public Text timeText;
     int respawnCount = 0;
@@ -15,11 +17,19 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(ShowedLevelTitle)
+        {
+            GameObject.Find("LevelText").SetActive(false);
+        }
+        else
+        {
+            GameObject.Find("LevelText").GetComponent<Text>().text = LevelTitle;
+        }
     }
     public void EndTheGame()
     {
         const string METHOD_NAME = "LoadNextLevel";
+        ShowedLevelTitle = false;
         gameEnded = true;
         Invoke(METHOD_NAME, GameConstants.LEVEL_CHANGE_DELAY);
     }
@@ -27,7 +37,7 @@ public class LevelManager : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(timeElapsed / 60);
         float seconds = timeElapsed - minutes * 60;
-        timeText.text = "Time: " + minutes.ToString() + ":" + seconds.ToString("00.00");
+        timeText.text = "TIME: " + minutes.ToString() + ":" + seconds.ToString("00.00");
     }
 
     void FixedUpdate()
@@ -47,6 +57,7 @@ public class LevelManager : MonoBehaviour
     }
     public void ReloadLevel()
     {
+        ShowedLevelTitle = true;
         if(!PauseMenu.GameIsPaused)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -55,7 +66,7 @@ public class LevelManager : MonoBehaviour
     public void Respawned()
     {
         respawnCount++;
-        respawnText.text = "Respawns: " + respawnCount.ToString();
+        respawnText.text = "RESPAWNS: " + respawnCount.ToString();
     }
 
 

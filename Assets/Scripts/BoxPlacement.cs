@@ -6,6 +6,7 @@ public class BoxPlacement : MonoBehaviour
 {
     [SerializeField] private Gates gates = null;
     [SerializeField] private float minDist = 0.5f;
+    private AudioSource gateSqueek;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,7 @@ public class BoxPlacement : MonoBehaviour
         {
             gates = FindObjectOfType<Gates>();
         }
+        gateSqueek = transform.Find("GateSound").GetComponent<AudioSource>();
     }
 
     void UpdateColor()
@@ -29,13 +31,8 @@ public class BoxPlacement : MonoBehaviour
         {
             Destroy(collider.gameObject);
             UpdateColor();
+            gateSqueek.Play();
             gates.Open();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

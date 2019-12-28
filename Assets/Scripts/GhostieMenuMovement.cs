@@ -6,7 +6,7 @@ public class GhostieMenuMovement : MonoBehaviour
 {
     private float timeElapsed = 0;
     [SerializeField] private float timeForRotation;
-    private float maxMovement = 250;
+    [SerializeField]private float maxMovement = 250;
     private float pos0;
     RectTransform rect;
     // Start is called before the first frame update

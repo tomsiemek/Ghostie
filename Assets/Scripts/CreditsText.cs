@@ -8,12 +8,17 @@ public class CreditsText : MonoBehaviour
     [SerializeField] private float Speed;
     RectTransform rectT;
     int height;
-    float finalY;
+    [SerializeField] private bool SetY = false;
+    [SerializeField]private float finalY;
     void Start()
     {
         rectT = GetComponent<RectTransform>();
         height = Screen.currentResolution.height;
-        finalY = height / 2 + rectT.rect.height / 2;
+        if(!SetY)
+        {
+            finalY = height + rectT.rect.height;
+        } 
+        Debug.Log(finalY);
     }
     void FixedUpdate()
     {
@@ -35,6 +40,7 @@ public class CreditsText : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.up * Speed * Time.deltaTime);
+        Debug.Log(PosY());
     }
 
     void End()

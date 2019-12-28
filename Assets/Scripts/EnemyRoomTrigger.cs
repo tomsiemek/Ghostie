@@ -1,55 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyRoomTrigger : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public int numberOfEnemies = 4;
-    List<GameObject> enemies;
-
-    Vector3 max;
-    Vector3 min;
-    public float centerRadius = 0.7f;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        enemies = new List<GameObject>();
-        Bounds bounds = GetComponent<BoxCollider2D>().bounds;
-        min = bounds.center - (bounds.extents * centerRadius);
-        max = bounds.center + (bounds.extents * centerRadius);
-    }
-
+    private const float SHOOTING_ENABLE_DELAY = 2;
+    private float TimeElapsed = 2;
     void OnTriggerEnter2D(Collider2D collider)
     {
-        
         if(collider.CompareTag("Player"))
         {
-            Debug.Log(min.ToString());
-            Debug.Log(max.ToString());
-            for (int i = 0; i < numberOfEnemies; i++)
-            {
-                enemies.Add(Instantiate(enemyPrefab, new Vector3(Random.Range(min.x, max.x), Random.Range(min.y, max.y), 0), Quaternion.identity));
-            }            
+            TimeElapsed = 0;
         }
     }
 
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Player") && TimeElapsed >= 2)
+        {
+            Cannon.ShootingEnabled = true;
+        }
+    }
+
+    void ClearAllBullets()
+    {
+        var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Bullet(Clone)");
+        foreach(var obj in objects)
+        {
+            Destroy(obj);
+        }
+    }
     void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.CompareTag("Player"))
         {
-            for (int i = 0; i < enemies.Count; i++)
-            {
-                Destroy(enemies[i]);
-            }
+            Cannon.ShootingEnabled = false;
+            ClearAllBullets();
         }
     }
-
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        TimeElapsed += Time.fixedDeltaTime;
+        TimeElapsed = (TimeElapsed > SHOOTING_ENABLE_DELAY) ? (SHOOTING_ENABLE_DELAY) : (TimeElapsed);
     }
 }
