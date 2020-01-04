@@ -140,7 +140,7 @@ PrefabInstance:
     - target: {fileID: 2108066778143905901, guid: 55b374cf1d032614780551f079eda4ab,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.62
+      value: 4.9216356
       objectReference: {fileID: 0}
     - target: {fileID: 2108066778143905901, guid: 55b374cf1d032614780551f079eda4ab,
         type: 3}
@@ -12400,7 +12400,7 @@ PrefabInstance:
     - target: {fileID: 2204743429157466494, guid: 8b46cb74bdbdfdb45a4fa70377664025,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.238364
+      value: 4.54
       objectReference: {fileID: 0}
     - target: {fileID: 2204743429157466494, guid: 8b46cb74bdbdfdb45a4fa70377664025,
         type: 3}
@@ -12483,7 +12483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14, y: -471}
+  m_AnchoredPosition: {x: 14, y: -364}
   m_SizeDelta: {x: 300, y: 594.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1770445543
@@ -12505,7 +12505,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Ghostie got locked in dungeon by The Keeper. Help him get out to the afterlife
-    to meet his friends. \n\nThere are severals levels of dungeons to traverse. Find
+    to meet his friends. \nThere are severals levels of dungeons to traverse. Find
     the portal to move forward!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12572,15 +12572,15 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -371.7869, y: -153.06757, z: -340.57056, w: 369.00555}
+  m_margin: {x: -253.47046, y: -153.06757, z: -207.46309, w: 284.49738}
   m_textInfo:
     textComponent: {fileID: 1770445543}
-    characterCount: 185
+    characterCount: 184
     spriteCount: 0
-    spaceCount: 34
+    spaceCount: 33
     wordCount: 33
     linkCount: 0
-    lineCount: 6
+    lineCount: 7
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -12673,7 +12673,7 @@ PrefabInstance:
     - target: {fileID: 6795548606134734282, guid: 7f203a8d1f100b448996f0f812a1c45e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.61
+      value: 4.911636
       objectReference: {fileID: 0}
     - target: {fileID: 6795548606134734282, guid: 7f203a8d1f100b448996f0f812a1c45e,
         type: 3}
